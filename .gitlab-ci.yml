@@ -5,28 +5,19 @@ stages:
 
 default:
   image: node:current-alpine
+
+.cache_template: &cache
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
       - node_modules
-
-#update cache:
-#  stage: cache
-#
-#  cache:
-#    key: ${CI_COMMIT_REF_SLUG}
-#    policy: push
-#    paths:
-#      - node_modules/
-#
-#  script:
-#    - npm i
 
 build api:
   stage: build
   only:
     - master
     - merge_requests
+  <<: *cache
   cache:
     policy: push
   script:
@@ -41,6 +32,7 @@ test api:
   only:
     - master
     - merge_requests
+  <<: *cache
   cache:
     policy: pull
   script:
