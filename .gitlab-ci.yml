@@ -6,7 +6,7 @@ default:
   image: node:current-alpine
   cache:
     key: ${CI_COMMIT_REF_SLUG}
-    policy: pull
+    policy: pull-push
     paths:
       - node_modules
 
