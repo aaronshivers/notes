@@ -4,9 +4,6 @@ stages:
 
 default:
   image: node:current-alpine
-  only:
-    - master
-    - merge_requests
   cache:
     key: ${CI_COMMIT_SLUG}
     policy: pull
@@ -17,6 +14,9 @@ default:
 
 build api:
   stage: build
+  only:
+    - master
+    - merge_requests
   script:
     - npm start &
     - sleep 3
@@ -24,5 +24,8 @@ build api:
 
 test api:
   stage: test
+  only:
+    - master
+    - merge_requests
   script:
     - npm run test
