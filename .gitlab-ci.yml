@@ -4,6 +4,9 @@ stages:
 
 default:
   image: node:current-alpine
+  only:
+    - master
+    - merge_requests
   cache:
     key: ${CI_COMMIT_SLUG}
     policy: pull
@@ -15,7 +18,9 @@ default:
 build api:
   stage: build
   script:
-    - npm start
+    - npm start &
+    - sleep 3
+    - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
 
 test api:
   stage: test
