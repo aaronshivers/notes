@@ -5,14 +5,14 @@ stages:
 default:
   image: node:current-alpine
 
-.cache_template: &cache
+.cache_template: &hello
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
       - node_modules
 
 build api:
-  <<: *cache
+  <<: *hello
   stage: build
   only:
     - master
@@ -27,7 +27,7 @@ build api:
     - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
 
 test api:
-  <<: *cache
+  <<: *hello
   stage: test
   only:
     - master
