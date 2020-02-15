@@ -38,7 +38,7 @@ build api:
     - npm i
     - npm start &
     - sleep 3
-    - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
+    - curl "http://localhost:3000" | tac | tac | grep -q "Hello Worldz!"
 
 test api:
   stage: test
