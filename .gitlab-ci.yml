@@ -11,17 +11,17 @@ default:
 #    paths:
 #      - node_modules
 
-update cache:
-  stage: cache
-
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    policy: push
-    paths:
-      - node_modules/
-
-  script:
-    - npm i
+#update cache:
+#  stage: cache
+#
+#  cache:
+#    key: ${CI_COMMIT_REF_SLUG}
+#    policy: push
+#    paths:
+#      - node_modules/
+#
+#  script:
+#    - npm i
 
 build api:
   stage: build
@@ -30,11 +30,12 @@ build api:
     - merge_requests
   cache:
     key: ${CI_COMMIT_REF_SLUG}
-    policy: pull
+    policy: push
     paths:
       - node_modules
   script:
     - apk add curl
+    - npm i
     - npm start &
     - sleep 3
     - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
@@ -47,5 +48,10 @@ test api:
   only:
     - master
     - merge_requests
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    policy: pull
+    paths:
+      - node_modules
   script:
     - npm run test
