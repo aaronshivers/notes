@@ -1,5 +1,4 @@
 stages:
-  - cache
   - build
   - test
 
@@ -13,11 +12,11 @@ default:
       - node_modules
 
 build api:
+  <<: *cache
   stage: build
   only:
     - master
     - merge_requests
-  <<: *cache
   cache:
     policy: push
   script:
@@ -28,11 +27,11 @@ build api:
     - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
 
 test api:
+  <<: *cache
   stage: test
   only:
     - master
     - merge_requests
-  <<: *cache
   cache:
     policy: pull
   script:
