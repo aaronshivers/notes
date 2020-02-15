@@ -39,9 +39,6 @@ build api:
     - npm start &
     - sleep 3
     - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
-  artifacts:
-    paths:
-      - ./node_modules
 
 test api:
   stage: test
