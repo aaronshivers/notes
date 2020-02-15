@@ -18,7 +18,7 @@ build api:
     - master
     - merge_requests
   script:
-    - apt-get install curl
+    - apk install curl
     - npm start &
     - sleep 3
     - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
