@@ -4,7 +4,6 @@ stages:
 
 default:
   image: node:current-alpine
-
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     policy: pull
@@ -18,7 +17,7 @@ build api:
     - merge_requests
   cache:
     key: ${CI_COMMIT_REF_SLUG}
-    policy: push
+    policy: pull-push
     paths:
       - node_modules
   script:
