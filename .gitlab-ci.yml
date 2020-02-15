@@ -4,34 +4,36 @@ stages:
 
 default:
   image: node:current-alpine
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    policy: pull-push
-    paths:
-      - node_modules
+#  cache:
+#    key: ${CI_COMMIT_REF_SLUG}
+#    policy: pull-push
+#    paths:
+#      - node_modules
 
 build api:
   stage: build
   only:
     - master
     - merge_requests
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    policy: push
-    paths:
-      - node_modules
+#  cache:
+#    key: ${CI_COMMIT_REF_SLUG}
+#    policy: push
+#    paths:
+#      - node_modules
   script:
     - apk add curl
     - npm i
     - npm start &
     - sleep 3
     - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
+  artifacts:
+    paths:
+      - ./node_modules
 
 test api:
   stage: test
   only:
     - master
     - merge_requests
-  cache: {}
   script:
     - npm run test
