@@ -5,20 +5,22 @@ stages:
 default:
   image: node:current-alpine
 
-.cache_template: &hello
   cache:
     key: ${CI_COMMIT_REF_SLUG}
+    policy: pull
     paths:
       - node_modules
 
 build api:
-  <<: *hello
   stage: build
   only:
     - master
     - merge_requests
   cache:
+    key: ${CI_COMMIT_REF_SLUG}
     policy: push
+    paths:
+      - node_modules
   script:
     - apk add curl
     - npm i
@@ -27,12 +29,9 @@ build api:
     - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
 
 test api:
-  <<: *hello
   stage: test
   only:
     - master
     - merge_requests
-  cache:
-    policy: pull
   script:
     - npm run test
