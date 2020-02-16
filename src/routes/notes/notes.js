@@ -1,33 +1,27 @@
 const express = require('express')
 const router = express.Router()
-const uuidv1 = require('uuid/v1')
-const fs = require('fs')
 
-router.post('/notes', (req, res) => {
+const Note = require('../../models/notes')
+
+router.post('/notes', async (req, res) => {
 
   try {
 
     // get text from the body
     const { text } = req.body
 
-    // set user id
-    const id = uuidv1()
-
     // create new note
-    const note = { id, text }
-
-    // create notes string
-    const notesJSON = JSON.stringify([note])
+    const note = new Note({ text })
 
     // save note
-    fs.readFile('./notes.json', (err, results) => {
-      console.log(JSON.stringify(results))
-    })
+    await note.save()
 
-    //
-    res.status(201).json('hi')
+    // return saved note
+    res.status(201).json(note)
 
   } catch (e) {
+
+    // return error message
     res.status(400).json(e.message)
   }
 })
