@@ -47,5 +47,4 @@ stage api:
     - master
   script:
     - apt-get install git
-    - git push origin heroku
-    - heroku $HEROKU_EMAIL --app=$HEROKU_APP_STAGING
+    - git push heroku master
