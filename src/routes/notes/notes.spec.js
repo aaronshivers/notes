@@ -9,16 +9,15 @@ describe('POST /notes', () => {
     text: 'note1'
   }
 
+  const req = request(app).post('/notes').send(note)
+
   it('should respond 201', async () => {
-    await request(app)
-      .post('/notes')
-      .send(note).expect(201)
+    await req
+      .expect(201)
   })
 
   it('should post note to db', async () => {
-    await request(app)
-      .post('/notes')
-      .send(note)
+    await req
       .expect(res => {
         expect(res.text).toContain(note.text)
       })
