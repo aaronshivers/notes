@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "mocha --exit **/*.spec.js",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
@@ -21,14 +21,12 @@
   "homepage": "https://github.com/aaronshivers/notes#readme",
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "jest": "^25.1.0",
+    "expect": "^25.1.0",
+    "mocha": "^7.0.1",
     "supertest": "^4.0.2"
   },
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.9.1"
-  },
-  "jest": {
-    "testEnvironment": "node"
   }
 }
