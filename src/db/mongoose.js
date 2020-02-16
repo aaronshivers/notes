@@ -5,7 +5,7 @@ const {
   MONGO_SERVER,
 } = process.env
 
-const uri = `mongodb://mongo:27017`
+const uri = `mongodb://mongo:27017${ MONGO_DATABASE }`
 const encodedUri = encodeURI(uri)
 
 const options = {
