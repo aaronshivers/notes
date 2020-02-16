@@ -4,45 +4,46 @@ const request = require('supertest')
 const app = require('../../app')
 const Note = require('../../models/notes')
 
-describe('POST /notes', () => {
+describe('/notes', () => {
   const note = {
-    text: 'note1'
+    text: 'note1',
   }
 
-  const req = request(app).post('/notes').send(note)
+  describe('POST /notes', () => {
 
-  it('should respond 201', async () => {
-    await req
-      .expect(201)
+    it('should respond 201', async () => {
+      await request(app)
+        .post('/notes')
+        .send(note)
+        .expect(201)
+    })
+
+    it('should post note to db', async () => {
+      await request(app)
+        .post('/notes')
+        .send(note)
+        .expect(res => expect(res.text).toContain(note.text))
+
+      const foundNote = await Note.findOne(note)
+      expect(foundNote).toBeTruthy()
+      expect(foundNote.text).toEqual(note.text)
+    })
   })
 
-  it('should post note to db', async () => {
-    await req
-      .expect(res => {
-        expect(res.text).toContain(note.text)
-      })
+  describe('GET /notes', () => {
 
-    const foundNote = await Note.findOne(note)
-    expect(foundNote).toBeTruthy()
-    expect(foundNote.text).toEqual(note.text)
+    it('should respond 200', async () => {
+      await request(app)
+        .get('/notes')
+        .expect(200)
+    })
+
+    it('should return all notes', async () => {
+      await request(app)
+        .get('/notes')
+        .expect(res => {
+          expect(res.text).toContain(note.text)
+      })
+    })
   })
 })
-
-// describe('GET /notes', () => {
-//   let response
-//
-//   beforeAll(() => {
-//     response = request(app).get('/notes')
-//   })
-//
-//   it('should respond 200', async () => {
-//     await response.expect(200)
-//   })
-//
-//   it('should return all notes', async () => {
-//     await response
-//       .expect(res => {
-//         expect(res.text).toEqual('Hello World!')
-//       })
-//   })
-// })

@@ -19,10 +19,27 @@ router.post('/notes', async (req, res) => {
     // return saved note
     res.status(201).json(note)
 
-  } catch (e) {
+  } catch (error) {
 
     // return error message
-    res.status(400).json(e.message)
+    res.status(400).json(error.message)
+  }
+})
+
+router.get('/notes', async (req, res) => {
+
+  try {
+
+    // find all notes
+    const notes = await Note.find()
+
+    // return notes
+    res.status(200).json(notes)
+
+  } catch (error) {
+
+    // return error message
+    res.status(400).json(error.message)
   }
 })
 
