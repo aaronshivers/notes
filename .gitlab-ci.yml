@@ -35,6 +35,7 @@ test api:
     - master
     - merge_requests
   script:
+    - export
     - npm test
   tags:
     - mongo
