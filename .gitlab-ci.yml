@@ -35,6 +35,6 @@ test api:
     - master
     - merge_requests
   before_script:
-    - mongod
+    - mongo
   script:
     - npm run test
