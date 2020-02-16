@@ -32,8 +32,7 @@ test api:
   services:
     - mongo:latest
   variables:
-    Host: mongo
-    Database: $MONGO_DATABASE
+    MONGO_URI: 'mongodb://mongo/app_name'
   only:
     - master
     - merge_requests
