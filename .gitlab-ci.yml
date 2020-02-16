@@ -31,6 +31,9 @@ test api:
   stage: test
   services:
     - mongo:latest
+  variables:
+    Host: mongo
+    Database: $MONGO_DATABASE
   only:
     - master
     - merge_requests

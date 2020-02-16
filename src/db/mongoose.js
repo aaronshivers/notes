@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const {
-  MONGO_DB_NAME,
+  MONGO_DATABASE,
   MONGO_SERVER,
 } = process.env
 
@@ -12,12 +12,12 @@ const options = {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
-  dbName: MONGO_DB_NAME,
+  dbName: MONGO_DATABASE,
 }
 
 const db = async () => {
   const conn = await mongoose.connect(encodedUri, options)
-  console.log(`MongoDB Connected: ${ conn.connection.host } | ${ process.env.MONGO_DB_NAME }`)
+  console.log(`MongoDB Connected: ${ conn.connection.host } | ${ process.env.MONGO_DATABASE }`)
 }
 
 module.exports = db
