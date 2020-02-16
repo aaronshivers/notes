@@ -16,8 +16,13 @@ const options = {
 }
 
 const connectToDB = async () => {
-  const conn = await mongoose.connect(encodedUri, options)
-  console.log(`MongoDB Connected: ${ conn.connection.host } | ${ process.env.MONGO_DATABASE }`)
+  try {
+    const conn = await mongoose.connect(encodedUri, options)
+    console.log(`MongoDB Connected: ${ conn.connection.host } | ${ process.env.MONGO_DATABASE }`)
+
+  } catch (error) {
+    console.log(error.message)
+  }
 }
 
 module.exports = connectToDB
