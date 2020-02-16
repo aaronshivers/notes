@@ -3,6 +3,8 @@ const app = require('../../app')
 
 describe('GET /', () => {
 
+  afterAll(async () => await mongoose.connection.close())
+
   it('should respond 200', async () => {
     await request(app).get('/').expect(200)
   })

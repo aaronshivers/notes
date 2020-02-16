@@ -32,8 +32,8 @@ test api:
   services:
     - mongo:latest
   variables:
-    Database: $MONGO_DATABASE
-    Host: $MONGO_HOST
+    Database: notes_db
+    Host: mongo
   only:
     - master
     - merge_requests
