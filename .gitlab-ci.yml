@@ -45,4 +45,7 @@ stage api:
   stage: staging
   image: ruby:2.7.0-alpine3.10
   script:
+    - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
+  tags:
+    - ruby
