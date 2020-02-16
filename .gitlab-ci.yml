@@ -29,6 +29,8 @@ build api:
 
 test api:
   stage: test
+  services:
+    - mongo:latest
   only:
     - master
     - merge_requests
