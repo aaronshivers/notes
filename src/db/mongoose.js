@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 
 const {
   MONGO_DATABASE,
-  MONGO_SERVER,
+  MONGO_HOST,
 } = process.env
 
-const uri = `mongodb://mongo:27017${ MONGO_DATABASE }`
+const uri = `mongodb://${ MONGO_HOST }:27017${ MONGO_DATABASE }`
 const encodedUri = encodeURI(uri)
 
 const options = {

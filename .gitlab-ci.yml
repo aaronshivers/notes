@@ -33,6 +33,7 @@ test api:
     - mongo:latest
   variables:
     Database: $MONGO_DATABASE
+    Host: $MONGO_HOST
   only:
     - master
     - merge_requests
