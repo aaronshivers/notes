@@ -32,7 +32,7 @@ test api:
   services:
     - mongo:latest
   variables:
-    MONGO_URI: 'mongodb://mongo/app_name'
+    MONGO_URI: 'mongodb://mongo/notes_db'
   only:
     - master
     - merge_requests
