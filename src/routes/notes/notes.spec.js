@@ -68,7 +68,7 @@ describe('/notes', () => {
 
   describe('GET /notes/:id', () => {
 
-      describe('and if `id` is invalid', () => {
+      describe('if `id` is invalid', () => {
 
         it('should respond 400', async () => {
           await request(app)
@@ -77,7 +77,7 @@ describe('/notes', () => {
         })
       })
 
-      describe('and if `id` is valid', () => {
+      describe('if `id` is valid', () => {
 
         describe('and no note is found', () => {
 
