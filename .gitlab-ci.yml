@@ -31,9 +31,6 @@ test api:
   stage: test
   services:
     - mongo:latest
-  variables:
-    database: notes_db
-    host: mongo
   only:
     - master
     - merge_requests
