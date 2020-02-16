@@ -22,7 +22,7 @@ build api:
       - node_modules
   script:
     - apk add curl
-    - npm i
+    - npm i --silent
     - npm start &
     - sleep 3
     - curl "http://localhost:3000" | tac | tac | grep -q "Hello World!"
@@ -34,5 +34,7 @@ test api:
   only:
     - master
     - merge_requests
+  before_script:
+    - mongod
   script:
     - npm run test
