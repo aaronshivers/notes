@@ -45,10 +45,6 @@ stage api:
   stage: staging
   only:
     - master
-  image: ruby:2.7.0-alpine3.10
-  cache: {}
   script:
-    - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
-  tags:
-    - ruby
+    - git push origin heroku
+    - heroku $HEROKU_EMAIL --app=$HEROKU_APP_STAGING
