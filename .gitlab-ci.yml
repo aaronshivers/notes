@@ -36,3 +36,5 @@ test api:
     - merge_requests
   script:
     - npm test
+  tags:
+    - mongo
