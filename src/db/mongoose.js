@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const {
   MONGO_DATABASE,
   MONGO_HOST,
-  MONGODB_URI
+  MONGODB_URI,
 } = process.env
 
 const uri = `mongodb://${ MONGO_HOST }:27017/${ MONGO_DATABASE }`
-const encodedUri = process.env === 'test' ? encodeURI(uri) : MONGODB_URI
+const encodedUri = process.env.NODE_ENV !== 'production' ? MONGODB_URI : encodeURI(uri)
 
 const options = {
   useNewUrlParser: true,
