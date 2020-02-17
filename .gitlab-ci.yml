@@ -43,7 +43,7 @@ test api:
 
 stage api:
   stage: staging
-#  image: ruby:2.6.5-alpine3.10
+  image: ruby:2.6.5-alpine3.10
   only:
     - master
   cache: {}
