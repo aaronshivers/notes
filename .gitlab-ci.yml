@@ -48,5 +48,6 @@ stage api:
   cache: {}
   script:
     - apk add git
-    - heroku git:remote -a notes-aaron-staging
+    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_STAGING.git
+    - git remote -v
     - git push heroku master
