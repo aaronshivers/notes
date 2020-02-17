@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit **/*.spec.js",
+    "test": " cross-env NODE_ENV=test mocha --exit **/*.spec.js",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
@@ -26,6 +26,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "cross-env": "^7.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.1"
   }
