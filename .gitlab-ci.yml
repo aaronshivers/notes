@@ -43,11 +43,12 @@ test api:
 
 stage api:
   stage: build
-  image: node:latest
+  image: alpine:latest
   only:
     - master
   cache: {}
   script:
+    - apk add git
     - git checkout master
     - git config user.email "$HEROKU_EMAIL"
     - git config user.name "$HEROKU_USERNAME"
