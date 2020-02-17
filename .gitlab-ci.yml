@@ -48,6 +48,7 @@ stage api:
     - master
   cache: {}
   before_script:
+    - gem install ruby-dev
     - gem install dpl
     - bundle install
   script:
