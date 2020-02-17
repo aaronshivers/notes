@@ -43,13 +43,12 @@ test api:
 
 stage api:
   stage: staging
-  image: ruby:2.6.5-alpine3.10
+  image: ruby:2.7.0-alpine3.10
   only:
     - master
   cache: {}
   before_script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
+    - apk add ruby-dev
     - gem install dpl
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
