@@ -2,6 +2,7 @@ stages:
   - build
   - test
   - staging
+  - staging review
   - production
 
 default:
@@ -52,3 +53,13 @@ stage api:
     - apk add curl
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
+
+staging review:
+  stage: staging review
+  image: alpine:latest
+  only:
+    - master
+  cache: {}
+  script:
+    - apk add curl
+    - curl "https://notes-aaron-staging.herokuapp.com/" | tac | tac | grep -q "Hello World!"
