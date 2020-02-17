@@ -42,7 +42,7 @@ test api:
     - mongo
 
 stage api:
-  stage: staging
+  stage: build
   image: node:latest
   only:
     - master
