@@ -48,9 +48,5 @@ stage api:
   cache: {}
   script:
     - apk add git
-    - git config --global user.email "$HEROKU_EMAIL"
-    - git config --global user.name "$HEROKU_USERNAME"
-    - git checkout master
     - git remote add heroku https://git.heroku.com:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_STAGING.git
-    - git commit --allow-empty -m 'hey there'
     - git push --force heroku master
