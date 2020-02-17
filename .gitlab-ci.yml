@@ -49,6 +49,7 @@ stage api:
   cache: {}
   script:
     - gem install dpl
+    - exports
     - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
   tags:
     - ruby
