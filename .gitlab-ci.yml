@@ -47,6 +47,6 @@ stage api:
     - master
   cache: {}
   script:
-    - apt-get install git
+    - apk add git
     - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_STAGING.git
     - git push -f heroku master
