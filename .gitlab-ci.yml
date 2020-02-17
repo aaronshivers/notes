@@ -43,8 +43,10 @@ test api:
 
 stage api:
   stage: staging
+  image: node:latest
   only:
     - master
   script:
     - apt-get install git
+    - git remote add origin
     - git push heroku master
