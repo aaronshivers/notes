@@ -42,7 +42,7 @@ test api:
     - mongo
 
 stage api:
-  stage: build
+  stage: staging
   image: ruby:alpine3.10
   only:
     - master
