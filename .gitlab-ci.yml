@@ -43,15 +43,9 @@ test api:
 
 stage api:
   stage: build
-  image: alpine:latest
+  image: ruby:latest
   only:
     - master
   cache: {}
   script:
-    - apk add git
-    - git checkout master
-    - git config user.email "$HEROKU_EMAIL"
-    - git config user.name "$HEROKU_USERNAME"
-    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_STAGING.git
-    - git fetch --all --unshallow
-    - git push --force heroku master
+    - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
