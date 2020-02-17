@@ -49,5 +49,6 @@ stage api:
   cache: {}
   script:
     - apk add git
+    - apk add curl
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
